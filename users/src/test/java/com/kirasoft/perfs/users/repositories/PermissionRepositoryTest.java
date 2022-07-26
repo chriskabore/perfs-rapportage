@@ -41,7 +41,7 @@ public class PermissionRepositoryTest {
     }
 
     /**
-     * This method tests that a permission entity is successfully saved to database
+     * This method tests that a permission entity is successfully saved into the database
      */
     @Test
     public void shouldStoreAPermission(){
