@@ -8,6 +8,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * RoleDTO - Class used to model transfer data for Role
+ * @author Sidnooma christian KABORE
+ */
 @Data
 @NoArgsConstructor
 public class RoleDTO implements Serializable {

@@ -1,6 +1,8 @@
 package com.kirasoft.perfs.users.dtos;
 
+import com.kirasoft.perfs.users.model.User;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,5 +19,12 @@ public class UserListDTO implements Serializable {
 
     public UserListDTO(){
         userList = new ArrayList<>();
+    }
+
+    public UserListDTO(List<User> listOfUsers){
+        if(listOfUsers!=null){
+            userList = new ArrayList<>();
+            listOfUsers.forEach(user -> userList.add(new UserDTO(user)));
+        }
     }
 }
