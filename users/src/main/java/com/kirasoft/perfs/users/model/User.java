@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -59,7 +60,16 @@ public class User {
     inverseJoinColumns = @JoinColumn(name="role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public List<Permission> getPermissions (){
+    public List<Permission> getActivePermissions (){
+        return this.roles.isEmpty() ? new ArrayList<>() : getRoles().stream()
+                .map(Role::getPermissions)
+                .flatMap(Collection::stream).filter(permission -> isEnabled()==true)
+                .collect(Collectors.toList());
+
+    }
+
+    public List<Permission> getAllPermissions(){
+
         return this.roles.isEmpty() ? new ArrayList<>() : getRoles().stream()
                 .map(Role::getPermissions)
                 .flatMap(Collection::stream)
