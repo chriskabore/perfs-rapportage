@@ -114,7 +114,7 @@ public class UnitTests {
         assertTrue(actualRoles.contains(roleAdmin));
 
         // Testing permission entity
-        List<Permission> actualPermissions = chris.getPermissions();
+        List<Permission> actualPermissions = chris.getActivePermissions();
         assertNotNull(actualPermissions);
         assertEquals(4, actualPermissions.size());
         assertTrue(actualPermissions.contains(viewProfile));

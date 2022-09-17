@@ -1,10 +1,13 @@
 package com.kirasoft.perfs.users.services;
 
 
+
+import com.kirasoft.perfs.users.exceptions.UserNotFoundException;
 import com.kirasoft.perfs.users.model.User;
 import com.kirasoft.perfs.users.repositories.UserRepository;
 import com.kirasoft.perfs.users.services.impl.UserServiceImpl;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +22,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 /**
@@ -138,6 +142,70 @@ public class UserServiceTest {
         assertThat(userService.getUserById(1L).getFirstName()).isNotEqualTo(oldFirstName);
 
     }
+
+    /**
+     * This method tests that given an invalid user Id the service
+     * throws an exception when get user by Id
+     */
+
+    @Test
+    public void givenANonExistingUserShouldThrowExceptionWhenGetUserById(){
+        Long testUserId = 3L;
+        given(userRepository.findById(testUserId)).willReturn(Optional.empty());
+        Assertions.assertThrows(UserNotFoundException.class, () -> {
+            userService.getUserById(testUserId);
+        });
+
+    }
+
+
+
+    /**
+     * This method tests that given an invalid username the service
+     * throws an exception when get user by username
+     */
+
+    @Test
+    public void givenANonExistingUserShouldThrowExceptionWhenGetUserByUsername(){
+        String  username = "chriskabor";
+        given(userRepository.findByUsername(username)).willReturn(Optional.empty());
+        Assertions.assertThrows(UserNotFoundException.class, () -> {
+            userService.getUserByUserName(username);
+        });
+
+    }
+
+    /**
+     * This method tests that given an invalid email the service
+     * throws an exception when get user by email
+     */
+
+    @Test
+    public void givenANonExistingUserShouldThrowExceptionWhenGetUserByEmail(){
+        String  email = "chriskabor@gmail.com";
+        given(userRepository.findByUsername(email)).willReturn(Optional.empty());
+        Assertions.assertThrows(UserNotFoundException.class, () -> {
+            userService.getUserByUserName(email);
+        });
+
+    }
+
+
+    /**
+     * This method tests that given an invalid email the service
+     * throws an exception when get user by email
+     */
+
+    @Test
+    public void givenANonExistingUserShouldThrowExceptionWhenDeleteUser(){
+        Long  testUserId = 3L;
+        given(userRepository.findById(testUserId)).willReturn(Optional.empty());
+        Assertions.assertThrows(UserNotFoundException.class, () -> {
+            userService.deleteUser(testUserId);
+        });
+
+    }
+
 
 
 

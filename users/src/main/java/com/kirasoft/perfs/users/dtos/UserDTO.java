@@ -14,7 +14,6 @@ import java.util.List;
  *
  */
 @Data
-@NoArgsConstructor
 public class UserDTO implements Serializable {
 
     private Long userId;

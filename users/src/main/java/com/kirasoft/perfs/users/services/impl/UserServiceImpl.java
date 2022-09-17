@@ -193,12 +193,21 @@ public class UserServiceImpl implements UserService {
 
     /**
      * This method is used to retrieve a user by a given Id
-     * @param Id -- the user Id that we want to retrieve
+     * @param userId -- the user Id that we want to retrieve
      * @return user -- the user with the matching id
      */
     @Override
-    public User getUserById(Long Id) {
-        return userRepository.findById(Id).orElse(null);
+    public User getUserById(Long userId) {
+        if(userId == null){
+            throw new InvalidUserIdentifierException("User Id cannot be null");
+        }
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if(optionalUser.isPresent()){
+            return optionalUser.get();
+        }else{
+            throw new UserNotFoundException(String.format("User not found for Username = %s", userId));
+        }
+
     }
 
     /**
