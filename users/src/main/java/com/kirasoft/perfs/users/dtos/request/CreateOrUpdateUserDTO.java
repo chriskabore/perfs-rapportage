@@ -1,4 +1,4 @@
-package com.kirasoft.perfs.users.dtos;
+package com.kirasoft.perfs.users.dtos.request;
 
 import lombok.*;
 
@@ -37,7 +37,7 @@ public class CreateOrUpdateUserDTO implements Serializable {
     private String facebook;
     private String linkedin;
     private String website;
-    private String contactNote;
+    private String contactDescription;
 
     // address information
     private String address;
@@ -45,4 +45,5 @@ public class CreateOrUpdateUserDTO implements Serializable {
     private String city;
     private String country;
     private String zipCode;
+    private String addressDescription;
 }

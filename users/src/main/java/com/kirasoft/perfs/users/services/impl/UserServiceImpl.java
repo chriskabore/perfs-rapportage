@@ -1,5 +1,5 @@
 package com.kirasoft.perfs.users.services.impl;
-import com.kirasoft.perfs.users.dtos.CreateOrUpdateUserDTO;
+import com.kirasoft.perfs.users.dtos.request.CreateOrUpdateUserDTO;
 import com.kirasoft.perfs.users.exceptions.*;
 import com.kirasoft.perfs.users.model.AddressInformation;
 import com.kirasoft.perfs.users.model.ContactInformation;
@@ -317,6 +317,11 @@ public class UserServiceImpl implements UserService {
         return userUpdated;
     }
 
+    /**
+     * This method deletes the user with the given user Id
+     * It throws an exception if any user with the specified Identifier is not found in the database
+     * @param Id -- The identifier of the user that is to be deleted
+     */
     @Override
     public void deleteUser(Long Id) {
         Optional userInDB = userRepository.findById(Id);

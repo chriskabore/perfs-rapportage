@@ -1,4 +1,4 @@
-package com.kirasoft.perfs.users.dtos;
+package com.kirasoft.perfs.users.dtos.request;
 
 
 import lombok.AllArgsConstructor;

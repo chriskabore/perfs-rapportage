@@ -1,6 +1,6 @@
 package com.kirasoft.perfs.users.services;
 
-import com.kirasoft.perfs.users.dtos.CreateOrUpdateUserDTO;
+import com.kirasoft.perfs.users.dtos.request.CreateOrUpdateUserDTO;
 import com.kirasoft.perfs.users.model.User;
 
 import java.util.List;
